@@ -4,7 +4,7 @@ import DocumentIcon from "@/app/atoms/pdf"
 import { useState } from "react";
 import { useFileStore } from "@/store/useFileStore";
 import PdfUpload from "./pdfupload";
-import { Upload, MessageCircle } from "lucide-react"; // icon library
+import { Upload, MessageCircle } from "lucide-react"; 
 import Ai from "./ai";
 export default function Pdf() {
   const [active, setActive] = useState("pdfs");

@@ -11,7 +11,7 @@ export default function PdfUpload({ goToAI }: { goToAI: () => void }) {
     const [isDragging, setIsDragging] = useState(false);
     const MAX_SIZE = 200 * 1024 * 1024; 
     const handleButtonClick = () => {
-        fileInputRef.current.click();
+        fileInputRef.current?.click();
     };
 
     const handleFileChange = (event) => {
@@ -87,7 +87,7 @@ export default function PdfUpload({ goToAI }: { goToAI: () => void }) {
                                 <div className="flex items-center gap-2">
                                     <DocumentIcon height={30} width={40} />
                                     <div className="flex flex-col">
-                                        <p className="text-gray-500 text-[14px] truncate max-w-[200px] overflow-hidden whitespace-nowrap">{file.name}</p>
+                                        <p className="text-gray-500 text-[14px] truncate  max-w-[200px] overflow-hidden whitespace-nowrap">{file.name}</p>
                                         <p className="text-gray-400 text-[12px]">
                                             {(file.size / (1024 * 1024)).toFixed(2)} MB
                                         </p>
