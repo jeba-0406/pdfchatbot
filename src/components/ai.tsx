@@ -17,7 +17,7 @@ export default function Ai() {
             addMessage({ id: Date.now() + 1, text: aiMessage, sender: "ai" });
             setIsTyping(false);
         }, 2000);
-        setMessage(""); 
+        setMessage("");
     };
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -37,8 +37,8 @@ export default function Ai() {
                     >
                         <div
                             className={`px-4 py-2 rounded-2xl max-w-[85%] text-[13px] sm:max-w-md ${msg.sender === "me"
-                                    ? "bg-gray-200 text-black"
-                                    : "bg-pink-100 text-black"
+                                ? "bg-gray-200 text-black"
+                                : "bg-pink-100 text-black"
                                 }`}
                         >
                             {msg.text}
@@ -65,18 +65,24 @@ export default function Ai() {
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="Ask me anything about your projects"
                         className="flex-1 bg-transparent outline-none text-gray-700 placeholder-gray-400 text-sm sm:text-base"
-                        onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" && !isTyping && message.trim()) {
+                              handleSend();
+                            }
+                          }}
+                          
                     />
                     <button
-                        disabled={!message.trim()}
+                        disabled={!message.trim() || isTyping}
                         onClick={handleSend}
-                        className={`p-2 rounded-lg transition-colors ${message.trim()
-                                ? "bg-gray-400 hover:bg-gray-500 text-white"
-                                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                        className={`p-2 rounded-lg transition-colors ${(!message.trim() || isTyping)
+                                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                                : "bg-gray-400 hover:bg-gray-500 text-white"
                             }`}
                     >
                         <Send size={18} />
                     </button>
+
                 </div>
             </div>
         </div>

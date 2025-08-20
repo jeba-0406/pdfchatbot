@@ -16,6 +16,10 @@ export default function PdfUpload({ goToAI }: { goToAI: () => void }) {
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
+        if (selectedFile.type !== "application/pdf") {
+            alert("Only PDF files are allowed!");
+            return;
+          }
         if (selectedFile) {
             if (selectedFile.size > MAX_SIZE) {
                 alert("File size must be under 200 MB");
